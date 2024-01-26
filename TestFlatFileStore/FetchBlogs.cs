@@ -15,6 +15,19 @@ namespace TestFlatFileStore
         }
 
         [Theory]
+        [InlineData(0, "Welcome to my new blog!|On Cheese|On Love")]
+        [InlineData(1, "On Murder|On Sewage|On Stars")]
+        [InlineData(2, "On the Midlife Crisis")]
+        public void GetNTitles(int batchNumber, string expectedTitle)
+        {
+            Store store = Store.Create("TestStore");
+
+            var titlesInBatch = store.GetNBlogs(3).ToList()[batchNumber].Select(blog => blog.Title);
+
+            Assert.Equal(expectedTitle, string.Join('|', titlesInBatch));
+        }
+
+        [Theory]
         [InlineData(0, "This is my first blog. Whatevs.")]
         [InlineData(1, "Wherein I present a \"fresh\" study on the topic of cheese.|Cheese smells.")]
         public void GetBlogContents(int fileNumber, string expectedContent)
