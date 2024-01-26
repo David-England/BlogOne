@@ -12,3 +12,17 @@
 h1 {
     font-family: "Lucida Console";
 }
+
+.blog-link {
+    border: dashed;
+    margin: 5px 0px 5px 0px;
+    width: max-content;
+}
+
+.blog-link:hover {
+    background-color: aquamarine;
+}
+
+.blog-link:active {
+    background-color: lawngreen;
+}

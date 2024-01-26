@@ -10,7 +10,7 @@ Welcome to my blog.
 
 @foreach (IBlog blog in AllBlogs)
 {
-	<div style="border:dashed;margin:5px 0px 5px 0px;">
+	<div class="blog-link">
 		<div style="font-family:'Lucida Console';">@(blog.Title)</div>
 		<div>@(blog.Author.Forename) @(blog.Author.Surname), @(blog.CreatedDate.ToString("dd MMMM yyyy"))</div>
 	</div>
