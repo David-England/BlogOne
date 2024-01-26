@@ -4,16 +4,12 @@ namespace FlatFileStore
 {
     public class Store : IBlogCollection
     {
-        private List<IBlog> _blogs = new List<IBlog>();
+        private List<IBlog> _blogs;
 
         private Store(string folderPath)
         {
-            DirectoryInfo folder = Directory.CreateDirectory(folderPath);
-
-            foreach (var item in folder.EnumerateFiles())
-            {
-                //
-            }
+            string[] files = Directory.GetFiles(folderPath);
+            _blogs = files.Select(Blog.Create).ToList<IBlog>();
         }
 
         public static Store Create(string folderPath)
