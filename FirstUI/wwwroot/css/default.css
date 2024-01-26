@@ -1,0 +1,14 @@
+﻿::selection {
+    background-color: hotpink;
+}
+
+.header {
+    font-family: "Lucida Console";
+    background-color: aqua;
+    position: sticky;
+    top: 0%;
+}
+
+h1 {
+    font-family: "Lucida Console";
+}
