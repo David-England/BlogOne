@@ -1,6 +1,6 @@
 ﻿@page "/"
 @using Core
-@using FlatFileStore
+@inject NavigationManager navMan
 
 <PageTitle>David's Electric Blog</PageTitle>
 
@@ -8,22 +8,14 @@
 
 Welcome to my blog.
 
-@foreach (IBlog blog in AllBlogs)
+@foreach (IBlog blog in Orchestrator.AllBlogs)
 {
-	<div class="blog-link">
+	<div class="blog-link" @onclick=@(() => LoadBlog(blog))>
 		<div style="font-family:'Lucida Console';">@(blog.Title)</div>
 		<div>@(blog.Author.Forename) @(blog.Author.Surname), @(blog.CreatedDate.ToString("dd MMMM yyyy"))</div>
 	</div>
 }
 
 @code {
-	private IBlogCollection _store = Store.Create("Blogs");
-
-	public IEnumerable<IBlog> AllBlogs
-	{
-		get
-		{
-			return _store.GetAllBlogs();
-		}
-	}
+	private void LoadBlog(IBlog blog) => navMan.NavigateTo($"blogpage/{Orchestrator.IndexOf(blog)}");
 }

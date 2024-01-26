@@ -1,0 +1,14 @@
+﻿@page "/blogpage/{Id}"
+@using Core
+
+<BlogPost ActiveBlog=@GetBlog(Convert.ToInt32(Id)) />
+
+@code {
+	[Parameter]
+	public string Id { get; set; } = "0";
+
+	public IBlog GetBlog(int i)
+	{
+		return Orchestrator.AllBlogs.Reverse().ToList()[i];
+	}
+}
