@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{E94A662A-9F30-4DF5-AF1F-6AEA6E348A2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{E94A662A-9F30-4DF5-AF1F-6AEA6E348A2C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC62D1F3-6BCB-4CF3-BB31-6662D52D179A}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatFileStore", "FlatFileStore\FlatFileStore.csproj", "{4B6B07EA-2E4D-4CBE-BED1-EE3BDBB9B741}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{E94A662A-9F30-4DF5-AF1F-6AEA6E348A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E94A662A-9F30-4DF5-AF1F-6AEA6E348A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E94A662A-9F30-4DF5-AF1F-6AEA6E348A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B6B07EA-2E4D-4CBE-BED1-EE3BDBB9B741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B6B07EA-2E4D-4CBE-BED1-EE3BDBB9B741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B6B07EA-2E4D-4CBE-BED1-EE3BDBB9B741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B6B07EA-2E4D-4CBE-BED1-EE3BDBB9B741}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
