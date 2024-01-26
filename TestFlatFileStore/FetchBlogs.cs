@@ -26,5 +26,27 @@ namespace TestFlatFileStore
 
             Assert.Equal(expectedContent, string.Join('|', allParagraphs));
         }
+
+        [Fact]
+        public void GetBlogAuthors()
+        {
+            Store store = Store.Create("TestStore");
+
+            var authors = store.GetAllBlogs().Select(b => b.Author);
+
+            foreach (var author in authors)
+                Assert.Equal("David England", $"{author.Forename} {author.Surname}");
+        }
+
+        [Fact]
+        public void GetBlogLocations()
+        {
+            Store store = Store.Create("TestStore");
+
+            var locations = store.GetAllBlogs().Select(b => b.Location);
+
+            foreach (var location in locations)
+                Assert.Equal("Cheltenham", location.Name);
+        }
     }
 }
