@@ -17,13 +17,13 @@ namespace FlatFileStore
             return new Store(folderPath);
         }
 
-        public IEnumerable<IBlog> GetAllBlogs() => _blogs;
+        public IEnumerable<IBlog> GetAllBlogs() => _blogs.OrderByDescending(b => b.CreatedDate);
 
         public IEnumerable<IEnumerable<IBlog>> GetNBlogs(int n)
         {
             for (int i = 0; i < _blogs.Count; i += n)
             {
-                yield return _blogs.Skip(i).Take(n);
+                yield return _blogs.OrderByDescending(b => b.CreatedDate).Skip(i).Take(n);
             }
         }
     }

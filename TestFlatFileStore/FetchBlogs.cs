@@ -3,8 +3,9 @@ namespace TestFlatFileStore
     public class FetchBlogs
     {
         [Theory]
-        [InlineData(0, "Welcome to my new blog!")]
-        [InlineData(1, "On Cheese")]
+        [InlineData(3, "On Stars")]
+        [InlineData(5, "On Cheese")]
+        [InlineData(6, "Welcome to my new blog!")]
         public void GetAllTitles(int fileNumber, string expectedTitle)
         {
             Store store = Store.Create("TestStore");
@@ -15,9 +16,9 @@ namespace TestFlatFileStore
         }
 
         [Theory]
-        [InlineData(0, "Welcome to my new blog!|On Cheese|On Love")]
-        [InlineData(1, "On Murder|On Sewage|On Stars")]
-        [InlineData(2, "On the Midlife Crisis")]
+        [InlineData(0, "On the Midlife Crisis|On Murder|On Sewage")]
+        [InlineData(1, "On Stars|On Love|On Cheese")]
+        [InlineData(2, "Welcome to my new blog!")]
         public void GetNTitles(int batchNumber, string expectedTitle)
         {
             Store store = Store.Create("TestStore");
@@ -28,8 +29,20 @@ namespace TestFlatFileStore
         }
 
         [Theory]
-        [InlineData(0, "This is my first blog. Whatevs.")]
-        [InlineData(1, "Wherein I present a \"fresh\" study on the topic of cheese.|Cheese smells.")]
+        [InlineData(0, "02/03/2024")]
+        [InlineData(1, "03/01/2024")]
+        public void GetCreatedDates(int fileNumber, string expectedDate)
+        {
+            Store store = Store.Create("TestStore");
+
+            DateTime dt = store.GetAllBlogs().ToList()[fileNumber].CreatedDate;
+
+            Assert.Equal(expectedDate, dt.ToString("dd/MM/yyyy"));
+        }
+
+        [Theory]
+        [InlineData(5, "Wherein I present a \"fresh\" study on the topic of cheese.|Cheese smells.")]
+        [InlineData(6, "This is my first blog. Whatevs.")]
         public void GetBlogContents(int fileNumber, string expectedContent)
         {
             Store store = Store.Create("TestStore");
