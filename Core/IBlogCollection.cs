@@ -2,7 +2,7 @@
 {
     public interface IBlogCollection
     {
-        public IEnumerable<IBlogElement> GetAllBlogs();
-        public IEnumerable<IEnumerable<IBlogElement>> GetNBlogs(int n);
+        public IEnumerable<IBlog> GetAllBlogs();
+        public IEnumerable<IEnumerable<IBlog>> GetNBlogs(int n);
     }
 }
