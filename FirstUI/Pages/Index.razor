@@ -1,7 +1,29 @@
 ﻿@page "/"
+@using Core
+@using FlatFileStore
 
 <PageTitle>David's Electric Blog</PageTitle>
 
 <h1>Willkommen</h1>
 
 Welcome to my blog.
+
+@foreach (Blog blog in AllBlogs)
+{
+	<div style="border:dashed;margin:5px 0px 5px 0px;">
+		<div style="font-family:'Lucida Console';">@(blog.Title)</div>
+		<div>@(blog.Author.Forename) @(blog.Author.Surname), @(blog.CreatedDate.ToString("dd MMMM yyyy"))</div>
+	</div>
+}
+
+@code {
+	private IBlogCollection _store = Store.Create("Blogs");
+
+	public IEnumerable<IBlog> AllBlogs
+	{
+		get
+		{
+			return _store.GetAllBlogs();
+		}
+	}
+}
