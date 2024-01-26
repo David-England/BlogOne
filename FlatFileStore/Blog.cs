@@ -16,6 +16,7 @@ namespace FlatFileStore
             Title = lines[0].Trim();
             Author = new Author();
             Location = new Location();
+            BlogElements = lines.Skip(1).Select(Paragraph.Create);
         }
 
         public static Blog Create(string fullName)
