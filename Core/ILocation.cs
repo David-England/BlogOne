@@ -8,6 +8,6 @@ namespace Core
 {
     public interface ILocation
     {
-        public string GetName();
+        public string Name { get; }
     }
 }

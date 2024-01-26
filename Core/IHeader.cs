@@ -8,6 +8,6 @@ namespace Core
 {
     public interface IHeader : IBlogElement
     {
-        public string GetText();
+        public string Text { get; }
     }
 }

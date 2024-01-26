@@ -8,9 +8,9 @@ namespace Core
 {
     public interface IAuthor
     {
-        public string GetForename();
-        public string GetMiddleNames();
-        public string GetSurname();
-        public string GetMiddleNameInitials();
+        public string Forename { get; }
+        public string MiddleNames { get; }
+        public string Surname { get; }
+        public string MiddleNameInitials { get; }
     }
 }

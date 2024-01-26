@@ -8,6 +8,6 @@ namespace Core
 {
     public interface IParagraph : IBlogElement
     {
-        public string GetText();
+        public string Text { get; }
     }
 }

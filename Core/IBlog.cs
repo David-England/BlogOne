@@ -8,6 +8,6 @@ namespace Core
 {
     public interface IBlog
     {
-        public IEnumerable<IBlogElement> GetBlogElements();
+        public IEnumerable<IBlogElement> BlogElements { get; }
     }
 }
