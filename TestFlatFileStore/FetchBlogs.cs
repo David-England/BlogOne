@@ -5,13 +5,13 @@ namespace TestFlatFileStore
         [Theory]
         [InlineData(0, "Welcome to my new blog!")]
         [InlineData(1, "On Cheese")]
-        public void GetAllTitles(int fileNumber, string title)
+        public void GetAllTitles(int fileNumber, string expectedTitle)
         {
             Store store = Store.Create("TestStore");
 
-            List<string> foundTitles = store.GetAllBlogs().Select(b => b.Title).ToList();
+            string title = store.GetAllBlogs().ToList()[fileNumber].Title;
 
-            Assert.Equal(title, foundTitles[fileNumber]);
+            Assert.Equal(expectedTitle, title);
         }
 
         [Theory]
