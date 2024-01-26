@@ -2,15 +2,16 @@ namespace TestFlatFileStore
 {
     public class FetchBlogs
     {
-        [Fact]
-        public void GetAllTitles()
+        [Theory]
+        [InlineData(0, "Welcome to my new blog!")]
+        [InlineData(1, "On Cheese")]
+        public void GetAllTitles(int fileNumber, string title)
         {
             Store store = Store.Create("TestStore");
 
-            List<string> titles = store.GetAllBlogs().Select(b => b.Title).ToList();
+            List<string> foundTitles = store.GetAllBlogs().Select(b => b.Title).ToList();
 
-            Assert.Equal("Welcome to my new blog!", titles[0]);
-            Assert.Equal("On Cheese", titles[1]);
+            Assert.Equal(title, foundTitles[fileNumber]);
         }
     }
 }
