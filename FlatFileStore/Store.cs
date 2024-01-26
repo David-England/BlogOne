@@ -16,7 +16,7 @@ namespace FlatFileStore
             }
         }
 
-        public Store Create(string folderPath)
+        public static Store Create(string folderPath)
         {
             return new Store(folderPath);
         }
