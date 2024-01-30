@@ -2,18 +2,25 @@
 {
 	public class RefreshBlogs
 	{
-		private string _blogPath = "WithOneBlog/blog.txt";
+		private const string FolderPath = "_RefreshBlogs";
+		private const string BlogPath = FolderPath + "/blog.txt";
 
 		[Fact]
 		public void InstantiateStoreThenAdd()
 		{
-			new FileInfo(_blogPath).Delete();
-			Store store = Store.Create("WithOneBlog");
+			CreateEmptyFolder(FolderPath);
+			Store store = Store.Create(FolderPath);
 
-			File.Create(_blogPath).Close();
-			File.WriteAllLines(_blogPath, ["01/01/2024 New blog", "My friends, it's a new day."]);
+			File.Create(BlogPath).Close();
+			File.WriteAllLines(BlogPath, ["01/01/2024 New blog", "My friends, it's a new day."]);
 
 			Assert.Single(store.GetAllBlogs());
+		}
+
+		private void CreateEmptyFolder(string path)
+		{
+			if (Directory.Exists(path)) Directory.Delete(path, recursive: true);
+			Directory.CreateDirectory(path);
 		}
 	}
 }

@@ -28,9 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="WithOneBlog\blog.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="TestStore\my_first_blog.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
