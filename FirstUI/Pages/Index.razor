@@ -8,14 +8,13 @@
 
 Welcome to my blog.
 
-@foreach (IBlog blog in Orchestrator.AllBlogs)
+@foreach (var kv in Orchestrator.AllBlogs)
 {
-	<div class="blog-link" @onclick=@(() => LoadBlog(blog))>
-		<div style="font-family:'Lucida Console';">@(blog.Title)</div>
-		<div>@(blog.Author.Forename) @(blog.Author.Surname), @(blog.CreatedDate.ToString("dd MMMM yyyy"))</div>
+	<div class="blog-link" @onclick=@(() => navMan.NavigateTo($"blogpage/{kv.Key}"))>
+		<div style="font-family:'Lucida Console';">@(kv.Value.Title)</div>
+		<div>
+			@(kv.Value.Author.Forename) @(kv.Value.Author.Surname),
+			@(kv.Value.CreatedDate.ToString("dd MMMM yyyy"))
+		</div>
 	</div>
-}
-
-@code {
-	private void LoadBlog(IBlog blog) => navMan.NavigateTo($"blogpage/{Orchestrator.IndexOf(blog)}");
 }

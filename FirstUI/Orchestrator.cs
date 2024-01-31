@@ -7,7 +7,7 @@ namespace FirstUI
 	{
 		private static IBlogCollection _store = Store.Create("Blogs");
 
-		public static IEnumerable<IBlog> AllBlogs
+		public static IDictionary<string, IBlog> AllBlogs
 		{
 			get
 			{
@@ -15,9 +15,6 @@ namespace FirstUI
 			}
 		}
 
-		public static int IndexOf(IBlog blog)
-		{
-			return AllBlogs.Reverse().ToList().IndexOf(blog);
-		}
+		public static IBlog GetBlog(string key) => _store.GetBlog(key);
 	}
 }

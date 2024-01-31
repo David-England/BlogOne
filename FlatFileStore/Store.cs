@@ -4,12 +4,13 @@ namespace FlatFileStore
 {
     public class Store : IBlogCollection
     {
-        private List<IBlog> _blogs;
+        private Dictionary<string, IBlog> _blogs;
 
         private Store(string folderPath)
         {
             string[] files = Directory.GetFiles(folderPath);
-            _blogs = files.Select(Blog.Create).ToList<IBlog>();
+            _blogs = files
+                .ToDictionary<string, string, IBlog>(Path.GetFileNameWithoutExtension, Blog.Create);
         }
 
         public static Store Create(string folderPath)
@@ -17,14 +18,21 @@ namespace FlatFileStore
             return new Store(folderPath);
         }
 
-        public IEnumerable<IBlog> GetAllBlogs() => _blogs.OrderByDescending(b => b.CreatedDate);
+        public IDictionary<string, IBlog> GetAllBlogs() =>
+            _blogs.OrderByDescending(kv => kv.Value.CreatedDate).ToDictionary();
 
-        public IEnumerable<IEnumerable<IBlog>> GetNBlogs(int n)
+        public IEnumerable<IDictionary<string, IBlog>> GetNBlogs(int n)
         {
             for (int i = 0; i < _blogs.Count; i += n)
             {
-                yield return _blogs.OrderByDescending(b => b.CreatedDate).Skip(i).Take(n);
+                yield return _blogs.OrderByDescending(kv => kv.Value.CreatedDate).Skip(i).Take(n)
+                    .ToDictionary();
             }
+        }
+
+        public IBlog GetBlog(string key)
+        {
+            return _blogs[key];
         }
     }
 }

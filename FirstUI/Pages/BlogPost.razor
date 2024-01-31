@@ -12,5 +12,5 @@
 
 @code {
 	[Parameter]
-	public IBlog ActiveBlog { get; set; } = Orchestrator.AllBlogs.First();
+	public IBlog ActiveBlog { get; set; } = Orchestrator.AllBlogs.Values.First();
 }

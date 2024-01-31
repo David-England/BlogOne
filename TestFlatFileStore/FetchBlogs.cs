@@ -10,7 +10,7 @@ namespace TestFlatFileStore
         {
             Store store = Store.Create("TestStore");
 
-            string title = store.GetAllBlogs().ToList()[fileNumber].Title;
+            string title = store.GetAllBlogs().Values.ToList()[fileNumber].Title;
 
             Assert.Equal(expectedTitle, title);
         }
@@ -23,7 +23,8 @@ namespace TestFlatFileStore
         {
             Store store = Store.Create("TestStore");
 
-            var titlesInBatch = store.GetNBlogs(3).ToList()[batchNumber].Select(blog => blog.Title);
+            var titlesInBatch = store.GetNBlogs(3).ToList()[batchNumber]
+                .Select(kv => kv.Value.Title);
 
             Assert.Equal(expectedTitle, string.Join('|', titlesInBatch));
         }
@@ -35,7 +36,7 @@ namespace TestFlatFileStore
         {
             Store store = Store.Create("TestStore");
 
-            DateTime dt = store.GetAllBlogs().ToList()[fileNumber].CreatedDate;
+            DateTime dt = store.GetAllBlogs().Values.ToList()[fileNumber].CreatedDate;
 
             Assert.Equal(expectedDate, dt.ToString("dd/MM/yyyy"));
         }
@@ -47,7 +48,7 @@ namespace TestFlatFileStore
         {
             Store store = Store.Create("TestStore");
 
-            var allParagraphs = store.GetAllBlogs().ToList()[fileNumber].BlogElements
+            var allParagraphs = store.GetAllBlogs().Values.ToList()[fileNumber].BlogElements
                 .Select(element => ((Paragraph)element).Text);
 
             Assert.Equal(expectedContent, string.Join('|', allParagraphs));
@@ -58,7 +59,7 @@ namespace TestFlatFileStore
         {
             Store store = Store.Create("TestStore");
 
-            var authors = store.GetAllBlogs().Select(b => b.Author);
+            var authors = store.GetAllBlogs().Select(kv => kv.Value.Author);
 
             foreach (var author in authors)
                 Assert.Equal("David England", $"{author.Forename} {author.Surname}");
@@ -69,7 +70,7 @@ namespace TestFlatFileStore
         {
             Store store = Store.Create("TestStore");
 
-            var locations = store.GetAllBlogs().Select(b => b.Location);
+            var locations = store.GetAllBlogs().Select(kv => kv.Value.Location);
 
             foreach (var location in locations)
                 Assert.Equal("Cheltenham", location.Name);
