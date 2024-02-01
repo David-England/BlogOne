@@ -1,16 +1,25 @@
 ﻿using Core;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace FlatFileStore
 {
     public class Store : IBlogCollection
     {
-        private Dictionary<string, IBlog> _blogs;
+        private string _folderPath;
+
+        private Dictionary<string, IBlog> Blogs
+        {
+            get
+            {
+				string[] files = Directory.GetFiles(_folderPath);
+				return files
+					.ToDictionary<string, string, IBlog>(Path.GetFileNameWithoutExtension, Blog.Create);
+			}
+        }
 
         private Store(string folderPath)
         {
-            string[] files = Directory.GetFiles(folderPath);
-            _blogs = files
-                .ToDictionary<string, string, IBlog>(Path.GetFileNameWithoutExtension, Blog.Create);
+            _folderPath = folderPath;
         }
 
         public static Store Create(string folderPath)
@@ -19,20 +28,20 @@ namespace FlatFileStore
         }
 
         public IDictionary<string, IBlog> GetAllBlogs() =>
-            _blogs.OrderByDescending(kv => kv.Value.CreatedDate).ToDictionary();
+            Blogs.OrderByDescending(kv => kv.Value.CreatedDate).ToDictionary();
 
-        public IEnumerable<IDictionary<string, IBlog>> GetNBlogs(int n)
+		public IEnumerable<IDictionary<string, IBlog>> GetNBlogs(int n)
         {
-            for (int i = 0; i < _blogs.Count; i += n)
+            for (int i = 0; i < Blogs.Count; i += n)
             {
-                yield return _blogs.OrderByDescending(kv => kv.Value.CreatedDate).Skip(i).Take(n)
+                yield return Blogs.OrderByDescending(kv => kv.Value.CreatedDate).Skip(i).Take(n)
                     .ToDictionary();
             }
         }
 
         public IBlog GetBlog(string key)
         {
-            return _blogs[key];
+            return Blogs[key];
         }
     }
 }
