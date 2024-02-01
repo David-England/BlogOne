@@ -1,7 +1,8 @@
 ﻿@page "/blogpage/{Key}"
 @using Core
+@inject IBlogCollection blogs
 
-<BlogPost ActiveBlog=@Orchestrator.GetBlog(Key) />
+<BlogPost ActiveBlog=blogs.GetBlog(Key) />
 
 @code {
 	[Parameter]

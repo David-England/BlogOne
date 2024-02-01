@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Core
 @inject NavigationManager navMan
+@inject IBlogCollection blogs
 
 <PageTitle>David's Electric Blog</PageTitle>
 
@@ -8,7 +9,7 @@
 
 Welcome to my blog.
 
-@foreach (var kv in Orchestrator.AllBlogs)
+@foreach (var kv in blogs.GetAllBlogs().OrderByDescending(kv => kv.Value.CreatedDate).ToDictionary())
 {
 	<div class="blog-link" @onclick=@(() => navMan.NavigateTo($"blogpage/{kv.Key}"))>
 		<div style="font-family:'Lucida Console';">@(kv.Value.Title)</div>
