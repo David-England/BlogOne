@@ -2,8 +2,8 @@
 @inject NavigationManager navMan
 
 <div class="blog-link" @onclick=@(() => navMan.NavigateTo($"blogpage/{BlogKey}"))>
-	<div style="font-family:'Lucida Console';">@(Blog.Title)</div>
-	<div>
+	<div class="blog-link-header">@(Blog.Title.ToUpper())</div>
+	<div class="blog-link-details">
 		@(Blog.Author.Forename) @(Blog.Author.Surname),
 		@(Blog.CreatedDate.ToString("dd MMMM yyyy"))
 	</div>
