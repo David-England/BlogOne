@@ -1,0 +1,17 @@
+﻿@using Core
+@inject NavigationManager navMan
+
+<div class="blog-link" @onclick=@(() => navMan.NavigateTo($"blogpage/{BlogKey}"))>
+	<div style="font-family:'Lucida Console';">@(Blog.Title)</div>
+	<div>
+		@(Blog.Author.Forename) @(Blog.Author.Surname),
+		@(Blog.CreatedDate.ToString("dd MMMM yyyy"))
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public string BlogKey { get; set; }
+	[Parameter]
+	public IBlog Blog { get; set; }
+}
