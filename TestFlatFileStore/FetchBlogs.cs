@@ -30,6 +30,16 @@ namespace TestFlatFileStore
         }
 
         [Theory]
+        [InlineData("my_first_blog", "This is my first blog. Whatevs.")]
+        [InlineData("on_cheese", "Wherein I present a \"fresh\" study on the topic of cheese.|Cheese smells.")]
+        public void GetBlogByKey(string key, string expectedContent)
+        {
+            Store store = Store.Create("TestStore");
+            var paragraphs = store.GetBlog(key).BlogElements.Select(element => ((Paragraph)element).Text);
+			Assert.Equal(expectedContent, string.Join('|', paragraphs));
+        }
+
+        [Theory]
         [InlineData(0, "02/03/2024")]
         [InlineData(1, "03/01/2024")]
         public void GetCreatedDates(int fileNumber, string expectedDate)
