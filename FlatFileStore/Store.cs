@@ -6,16 +6,6 @@ namespace FlatFileStore
     {
         private string _folderPath;
 
-        private Dictionary<string, IBlog> Blogs
-        {
-            get
-            {
-				string[] files = Directory.GetFiles(_folderPath);
-				return files
-					.ToDictionary<string, string, IBlog>(Path.GetFileNameWithoutExtension, Blog.Create);
-			}
-        }
-
         private Store(string folderPath)
         {
             _folderPath = folderPath;
@@ -26,21 +16,16 @@ namespace FlatFileStore
             return new Store(folderPath);
         }
 
-        public IDictionary<string, IBlog> GetAllBlogs() =>
-            Blogs.OrderByDescending(kv => kv.Value.CreatedDate).ToDictionary();
-
-		public IEnumerable<IDictionary<string, IBlog>> GetNBlogs(int n)
+        public IDictionary<string, IBlog> GetAllBlogs()
         {
-            for (int i = 0; i < Blogs.Count; i += n)
-            {
-                yield return Blogs.OrderByDescending(kv => kv.Value.CreatedDate).Skip(i).Take(n)
-                    .ToDictionary();
-            }
-        }
+			string[] files = Directory.GetFiles(_folderPath);
+			return files
+				.ToDictionary<string, string, IBlog>(Path.GetFileNameWithoutExtension, Blog.Create);
+		}
 
         public IBlog GetBlog(string key)
         {
-            return Blogs[key];
+            return GetAllBlogs()[key];
         }
     }
 }

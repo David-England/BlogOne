@@ -11,7 +11,8 @@ namespace FirstUI
 		{
 			get
 			{
-				return _store.GetAllBlogs();
+				return _store.GetAllBlogs().OrderByDescending(kv => kv.Value.CreatedDate)
+					.ToDictionary();
 			}
 		}
 
