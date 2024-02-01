@@ -4,7 +4,23 @@
 
 <BlogPost ActiveBlog=blogs.GetBlog(Key) />
 
+@if (LatestOtherPost.HasValue)
+{
+	<p style="font-style:italic">You may also like:</p>
+	<BlogLinkTile BlogKey=@LatestOtherPost.Value.Key Blog=LatestOtherPost.Value.Value />
+}
+
 @code {
 	[Parameter]
 	public string Key { get; set; } = "";
+	public KeyValuePair<string, IBlog>? LatestOtherPost
+	{
+		get
+		{
+			return blogs.GetAllBlogs()
+				.Where(kv => kv.Key != Key)
+				.OrderBy(kv => kv.Value.CreatedDate)
+				.Last();
+		}
+	}
 }
