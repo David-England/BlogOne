@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.FileProviders;
+using Core;
+
+IBlogCollection store = FlatFileStore.Store.Create("Blogs");
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddScoped<Core.IBlogCollection, FlatFileStore.Store>(
-    (prov) => FlatFileStore.Store.Create("Blogs"));
+builder.Services.AddScoped(prov => store);
 
 var app = builder.Build();
 
@@ -22,6 +25,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+    { FileProvider = new PhysicalFileProvider(store.ImagesDirectoryPath) });
 
 app.UseRouting();
 

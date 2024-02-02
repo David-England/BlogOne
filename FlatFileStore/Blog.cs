@@ -19,12 +19,18 @@ namespace FlatFileStore
             CreatedDate = DateTime.Parse(lines[0].Substring(0, 10));
             Author = new Author();
             Location = new Location();
-            BlogElements = lines.Skip(1).Select(Paragraph.Create);
+            BlogElements = lines.Skip(1).Select(CreateBlogElement);
         }
 
         public static Blog Create(string fullName)
         {
             return new Blog(fullName);
+        }
+
+        private static IBlogElement CreateBlogElement(string line)
+        {
+            if (line.Substring(0, Math.Min(5, line.Length)) == "<<PIC") return PictureLink.CreateFromLine(line);
+            return Paragraph.Create(line);
         }
     }
 }

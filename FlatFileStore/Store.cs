@@ -6,6 +6,14 @@ namespace FlatFileStore
     {
         private string _folderPath;
 
+        public string ImagesDirectoryPath
+        {
+            get
+            {
+                return new DirectoryInfo(Path.Combine(_folderPath, "pics")).FullName;
+            }
+        }
+
         private Store(string folderPath)
         {
             _folderPath = folderPath;

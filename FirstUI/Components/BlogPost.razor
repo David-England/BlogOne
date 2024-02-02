@@ -7,7 +7,15 @@
 
 @foreach (var element in ActiveBlog.BlogElements)
 {
-	<p>@(((IParagraph)element).Text)</p>
+	if (element is IParagraph)
+	{
+		<p>@(((IParagraph)element).Text)</p>
+	}
+	else if (element is IPictureLink)
+	{
+		<img src=@(((IPictureLink)element).Path) title=@(((IPictureLink)element).Caption) />
+		<div style="font-style:italic">@(((IPictureLink)element).Caption)</div>
+	}
 }
 
 @code {
