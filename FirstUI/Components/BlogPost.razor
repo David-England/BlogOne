@@ -13,7 +13,8 @@
 	}
 	else if (element is IPictureLink)
 	{
-		<img src=@(((IPictureLink)element).Path) title=@(((IPictureLink)element).Caption) />
+		<img src=@(((IPictureLink)element).Path) title=@(((IPictureLink)element).Caption)
+			style="max-height:75%;max-width:75%;" />
 		<div style="font-style:italic">@(((IPictureLink)element).Caption)</div>
 	}
 }
