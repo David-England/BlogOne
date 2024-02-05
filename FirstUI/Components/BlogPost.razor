@@ -3,7 +3,8 @@
 <PageTitle>@ActiveBlog.Title</PageTitle>
 
 <h1>@ActiveBlog.Title</h1>
-@ActiveBlog.Author.Forename @ActiveBlog.Author.Surname, @ActiveBlog.CreatedDate.ToString("d MMMM yyyy")
+<div>@ActiveBlog.Topic.ToUpper()</div>
+<div>@ActiveBlog.Author.Forename @ActiveBlog.Author.Surname, @ActiveBlog.CreatedDate.ToString("d MMMM yyyy")</div>
 
 @foreach (var element in ActiveBlog.BlogElements)
 {

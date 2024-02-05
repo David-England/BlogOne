@@ -6,6 +6,7 @@ namespace FlatFileStore
     public class Blog : IBlog
     {
         public string Title { get; }
+        public string Topic { get; }
         public DateTime CreatedDate { get; }
         public IAuthor Author { get; }
         public ILocation Location { get; }
@@ -17,9 +18,10 @@ namespace FlatFileStore
 
             Title = lines[0].Substring(10).Trim();
             CreatedDate = DateTime.Parse(lines[0].Substring(0, 10));
+            Topic = lines[1].Trim();
             Author = new Author();
             Location = new Location();
-            BlogElements = lines.Skip(1).Select(CreateBlogElement);
+            BlogElements = lines.Skip(2).Select(CreateBlogElement);
         }
 
         public static Blog Create(string fullName)
