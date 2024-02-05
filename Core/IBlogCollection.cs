@@ -1,8 +1,10 @@
-﻿namespace Core
+﻿using Microsoft.Extensions.FileProviders;
+
+namespace Core
 {
     public interface IBlogCollection
     {
-        public string ImagesDirectoryPath { get; }
+        public IFileProvider ImageFileProvider { get; }
         public IDictionary<string, IBlog> GetAllBlogs();
         public IBlog GetBlog(string key);
     }

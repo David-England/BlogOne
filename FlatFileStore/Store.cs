@@ -1,4 +1,5 @@
 ﻿using Core;
+using Microsoft.Extensions.FileProviders;
 
 namespace FlatFileStore
 {
@@ -6,11 +7,12 @@ namespace FlatFileStore
     {
         private string _folderPath;
 
-        public string ImagesDirectoryPath
+        public IFileProvider ImageFileProvider
         {
             get
             {
-                return new DirectoryInfo(Path.Combine(_folderPath, "pics")).FullName;
+                var di = new DirectoryInfo(Path.Combine(_folderPath, "pics")).FullName;
+                return new PhysicalFileProvider(di);
             }
         }
 

@@ -1,14 +1,14 @@
-﻿namespace TestFlatFileStore
+﻿using Microsoft.Extensions.FileProviders;
+
+namespace TestFlatFileStore
 {
 	public class FetchImageDirectory
 	{
 		[Fact]
-		public void GetImageDirectory()
+		public void ImageExists()
 		{
 			Store store = Store.Create("TestStore");
-
-			DirectoryInfo di = new DirectoryInfo(store.ImagesDirectoryPath);
-			Assert.Equal("TestStore\\pics", Path.Combine(di.Parent!.Name, di.Name));
+			Assert.True(store.ImageFileProvider.GetFileInfo("dvdiag.png").Exists);
 		}
 	}
 }

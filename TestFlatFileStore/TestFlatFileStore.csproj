@@ -49,6 +49,9 @@
     <None Update="TestStore\on_the_midlife_crisis.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestStore\pics\dvdiag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
