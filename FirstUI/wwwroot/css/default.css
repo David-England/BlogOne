@@ -32,6 +32,15 @@ h1 {
     opacity: .8;
 }
 
+.nav-button:hover {
+    background-color: cyan;
+    border: solid;
+}
+
+.nav-button:active {
+    background-color: orange;
+}
+
 .blog-link {
     border: dashed;
     margin: 10px 0px 10px 0px;
