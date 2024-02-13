@@ -1,0 +1,23 @@
+﻿@using Core
+@inject IBlogCollection blogs
+
+<div class="nav-bar">
+	@foreach (var topic in Topics)
+	{
+		<NavButton Text=@topic />
+	}
+</div>
+
+@code {
+	public IEnumerable<string> Topics
+	{
+		get
+		{
+			return blogs.GetAllBlogs()
+				.Select(kv => kv.Value.Topic)
+				.Distinct()
+				.Order()
+				.Append("About");
+		}
+	}
+}
