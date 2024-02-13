@@ -1,0 +1,29 @@
+﻿@page "/bytopic/{TopicName}"
+@using Core
+@inject IBlogCollection blogs
+
+<PageTitle>David's Electric Blog: @TopicName!.ToUpper()</PageTitle>
+
+<h1>@TopicName!.ToUpper()</h1>
+
+Here are all the blogs under the category <b>@TopicName!.ToLower()</b>.
+
+@foreach (var kv in OrderedTopicalBlogs)
+{
+	<BlogLinkTile BlogKey=@kv.Key Blog=@kv.Value />
+}
+
+@code {
+	[Parameter]
+	public string? TopicName { get; set; }
+	public IDictionary<string, IBlog> OrderedTopicalBlogs
+	{
+		get
+		{
+			return blogs.GetAllBlogs()
+				.Where(kv => kv.Value.Topic.ToLower() == TopicName!.ToLower())
+				.OrderByDescending(kv => kv.Value.CreatedDate)
+				.ToDictionary();
+		}
+	}
+}

@@ -4,7 +4,7 @@
 <div class="nav-bar">
 	@foreach (var topic in Topics)
 	{
-		<NavButton Text=@topic />
+		<NavButton Text=@topic Link=@("/bytopic/" + topic.ToLower()) />
 	}
 </div>
 
