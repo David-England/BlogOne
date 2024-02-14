@@ -6,6 +6,7 @@
 	{
 		<NavButton Text=@topic Link=@("/bytopic/" + topic.ToLower()) />
 	}
+	<NavButton Text="About" Link="/about" />
 </div>
 
 @code {
@@ -16,8 +17,7 @@
 			return blogs.GetAllBlogs()
 				.Select(kv => kv.Value.Topic)
 				.Distinct()
-				.Order()
-				.Append("About");
+				.Order();
 		}
 	}
 }
