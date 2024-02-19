@@ -21,7 +21,7 @@ namespace FlatFileStore
 
 		public static TableRegular CreateFromLine(string line)
 		{
-			var elements = line.Split("¬¬");
+			var elements = line.Split('¬');
 
 			string[] headers = ParseHeader(elements[1]);
 			int nCols = headers.Length;
@@ -45,7 +45,7 @@ namespace FlatFileStore
 
 			string[,] ParseCells(string tableBodyString)
 			{
-				var jagged = tableBodyString.Split('¬')
+				var jagged = tableBodyString.Split("||")
 					.Select(s => ParseRow(s, shouldBe: nCols).ToArray())
 					.ToArray();
 
