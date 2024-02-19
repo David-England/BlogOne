@@ -10,10 +10,7 @@ namespace TestFlatFileStore
 		public void FetchCell(string blogKey, int row, int col, string expected)
 		{
 			Store store = Store.Create("TestStore");
-			string actual = store.GetBlog(blogKey).BlogElements
-				.Where(elem => elem is ITableRegular)
-				.Select(tab => ((ITableRegular)tab).Cells)
-				.Single()[row, col];
+			string actual = FetchSingleTableRegular(store, blogKey).Cells[row, col];
 			Assert.Equal(expected, actual);
 		}
 
@@ -22,10 +19,7 @@ namespace TestFlatFileStore
 		public void FetchHeader(string blogKey, int col, string expected)
 		{
 			Store store = Store.Create("TestStore");
-			string actual = store.GetBlog(blogKey).BlogElements
-				.Where(elem => elem is ITableRegular)
-				.Select(tab => ((ITableRegular)tab).Headers)
-				.Single()[col];
+			string actual = FetchSingleTableRegular(store, blogKey).Headers[col];
 			Assert.Equal(expected, actual);
 		}
 
@@ -34,11 +28,11 @@ namespace TestFlatFileStore
 		public void FetchCaption(string blogKey, string expected)
 		{
 			Store store = Store.Create("TestStore");
-			string actual = store.GetBlog(blogKey).BlogElements
-				.Where(elem => elem is ITableRegular)
-				.Select(tab => ((ITableRegular)tab).Caption)
-				.Single();
+			string actual = FetchSingleTableRegular(store, blogKey).Caption;
 			Assert.Equal(expected, actual);
 		}
+
+		private ITableRegular FetchSingleTableRegular(Store store, string key) =>
+			(ITableRegular)store.GetBlog(key).BlogElements.Single(elem => elem is ITableRegular);
 	}
 }
