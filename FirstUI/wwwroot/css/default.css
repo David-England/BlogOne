@@ -67,3 +67,30 @@ h1 {
 .blog-link:active {
     background-color: orange;
 }
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: lightgrey;
+    border-left: solid;
+    border-right: solid;
+    font-weight: bold;
+    padding: 4px;
+}
+
+tr td {
+    border-left: solid;
+    border-right: solid;
+    padding: 4px;
+}
+
+tr:nth-child(odd) {
+    background-color: lightcyan;
+}
+
+tr:hover {
+    background-color: cyan;
+}

@@ -1,0 +1,6 @@
+﻿20/02/2024 This blog now includes tables
+Announcements
+One dire crisis faced by this blog thus far is the complete lack of tables---or, indeed, any physical way of displaying tables. This has greatly impaired the progress of humanity in a number of ways since the tabular format has consistently proved critical in the life of every human if they want to make sense of anything at all.
+Well, it's been a long time coming, but tables are now officially supported.
+<<TAB ¬ Country | Capital | Population ¬ Germany | Berlin | 83,300,000 || United Kingdom | London | 67,700,000 || France | Paris | 64,800,000 || Italy | Rome | 58,900,000 || Spain | Madrid | 47,500,000 || Poland | Warsaw | 41,000,000 ¬ The largest countries in Western Europe by population. These populations are 2023 UN estimates pulled from Wikipedia.
+Presently, all tables on the blog must have the same colours and formatting; this does help preserve the look and feel of the website.
