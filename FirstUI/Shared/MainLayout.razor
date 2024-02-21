@@ -1,8 +1,9 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager navMan
 
 <PageTitle>FirstUI</PageTitle>
 
-<div class="header">David's Electric Blog</div>
+<div class="header" @onclick=@(() => navMan.NavigateTo("/"))>David's Electric Blog</div>
 <NavBar />
 
 @Body
