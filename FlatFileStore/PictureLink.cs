@@ -16,6 +16,7 @@ namespace FlatFileStore
 		public static PictureLink CreateFromLine(string line)
 		{
 			var args = line.Split('|');
+			if (args.Length < 3) throw new LineParseException("<<PIC has too few elements.", line);
 			return new PictureLink(path: args[1].Trim(), caption: args[2].Trim());
 		}
 	}

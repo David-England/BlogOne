@@ -23,6 +23,9 @@ namespace FlatFileStore
 		{
 			var elements = line.Split('¬');
 
+			if (elements.Length < 4)
+				throw new LineParseException("<<TAB has too few elements.", line);
+
 			string[] headers = ParseHeader(elements[1]);
 			int nCols = headers.Length;
 			string[,] cells = ParseCells(elements[2]);
@@ -39,7 +42,7 @@ namespace FlatFileStore
 			{
 				var cells = rowLine.Split('|').Select(s => s.Trim());
 				if (cells.Count() != shouldBe)
-					throw new Exception($"Row has incorrect number of cells: \"{rowLine}\"");
+					throw new LineParseException("Table row has too few cells.", rowLine);
 				return cells;
 			}
 
