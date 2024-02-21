@@ -41,6 +41,7 @@ h1 {
 
 .nav-button:active {
     background-color: orange;
+    border: solid;
 }
 
 .blog-link {
@@ -66,6 +67,7 @@ h1 {
 
 .blog-link:active {
     background-color: orange;
+    border-width: thick;
 }
 
 table {
