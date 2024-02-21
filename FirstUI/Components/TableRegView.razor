@@ -1,0 +1,30 @@
+﻿@using Core
+
+<table>
+	<tr>
+		@foreach (string h in Table!.Headers)
+		{
+			<th>
+				@h.ToUpper()
+			</th>
+		}
+	</tr>
+
+	@for (int i = 0; i < Table!.nRows; i++)
+	{
+		<tr>
+			@for (int j = 0; j < Table!.nCols; j++)
+			{
+				<td>
+					@(Table!.Cells[i, j])
+				</td>
+			}
+		</tr>
+	}
+</table>
+<div style="font-style:italic">@(Table!.Caption)</div>
+
+@code {
+	[Parameter]
+	public ITableRegular? Table { get; set; }
+}

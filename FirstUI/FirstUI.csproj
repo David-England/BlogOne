@@ -11,8 +11,4 @@
     <ProjectReference Include="..\FlatFileStore\FlatFileStore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
 </Project>

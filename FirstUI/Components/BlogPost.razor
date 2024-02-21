@@ -20,29 +20,7 @@
 	}
 	else if (element is ITableRegular)
 	{
-		<table>
-			<tr>
-				@foreach (string h in ((ITableRegular)element).Headers)
-				{
-					<th>
-						@h.ToUpper()
-					</th>
-				}
-			</tr>
-
-			@for (int i = 0; i < ((ITableRegular)element).nRows; i++)
-			{
-				<tr>
-					@for (int j = 0; j < ((ITableRegular)element).nCols; j++)
-					{
-						<td>
-							@(((ITableRegular)element).Cells[i, j])
-						</td>
-					}
-				</tr>
-			}
-		</table>
-		<div style="font-style:italic">@(((ITableRegular)element).Caption)</div>
+		<TableRegView Table=(ITableRegular)element />
 	}
 }
 
