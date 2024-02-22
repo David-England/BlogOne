@@ -1,6 +1,4 @@
-﻿@inject NavigationManager navMan
-
-<div class="nav-button" @onclick=@(() => navMan.NavigateTo(Link))>@Text</div>
+﻿<a class="nav-button" href=@Link>@Text</a>
 
 @code {
 	[Parameter]

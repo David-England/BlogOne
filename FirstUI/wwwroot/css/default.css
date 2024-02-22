@@ -3,11 +3,13 @@
 }
 
 .header {
+    display: block;
     font-family: "Lucida Console";
     font-size: large;
     background-color: cyan;
     position: sticky;
     top: 0%;
+    width: 100%;
 }
 
 .header:active {
@@ -17,6 +19,11 @@
 
 body {
     font-family: "Times New Roman";
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
 }
 
 h1 {
@@ -51,6 +58,7 @@ h1 {
 
 .blog-link {
     border: dashed;
+    display: block;
     margin: 10px 0px 10px 0px;
     padding: 10px;
     width: max-content;
