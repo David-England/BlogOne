@@ -10,13 +10,8 @@
     top: 0%;
 }
 
-.header:hover {
-    border: solid;
-}
-
 .header:active {
     background-color: black;
-    border: solid;
     color: cyan;
 }
 
