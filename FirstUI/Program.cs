@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.FileProviders;
 using Core;
 
-IBlogCollection store = FlatFileStore.Store.Create("C:\\Users\\david\\Blogs");
-
 var builder = WebApplication.CreateBuilder(args);
+
+IBlogCollection store =
+    FlatFileStore.Store.Create(builder.Configuration.GetValue<string>("BlogDirectory")!);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
