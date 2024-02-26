@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.FileProviders;
 using Core;
 
-IBlogCollection store = FlatFileStore.Store.Create("Blogs");
+IBlogCollection store = FlatFileStore.Store.Create("C:\\Users\\david\\Blogs");
 
 var builder = WebApplication.CreateBuilder(args);
 
