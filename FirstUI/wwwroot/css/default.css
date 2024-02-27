@@ -49,11 +49,13 @@ h1 {
 .nav-button:hover {
     background-color: cyan;
     border: solid;
+    border-width: thick;
 }
 
 .nav-button:active {
     background-color: orange;
     border: solid;
+    border-width: thick;
 }
 
 .blog-link {
