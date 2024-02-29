@@ -1,5 +1,4 @@
 ﻿@page "/blogpage/{Key}"
-@using Core
 @inject IBlogCollection blogs
 
 <BlogPost ActiveBlog=blogs.GetBlog(Key) />
