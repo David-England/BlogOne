@@ -1,10 +1,10 @@
-﻿<PageTitle>@ActiveBlog.Title</PageTitle>
+﻿<PageTitle>@ActiveBlog?.Title</PageTitle>
 
-<h1>@ActiveBlog.Title</h1>
-<div>@ActiveBlog.Topic.ToUpper()</div>
-<div>@ActiveBlog.Author.Forename @ActiveBlog.Author.Surname, @ActiveBlog.CreatedDate.ToString("d MMMM yyyy")</div>
+<h1>@ActiveBlog?.Title</h1>
+<div>@ActiveBlog?.Topic.ToUpper()</div>
+<div>@ActiveBlog?.Author.Forename @ActiveBlog?.Author.Surname, @ActiveBlog?.CreatedDate.ToString("d MMMM yyyy")</div>
 
-@foreach (var element in ActiveBlog.BlogElements)
+@foreach (var element in ActiveBlog?.BlogElements)
 {
 	if (element is IParagraph)
 	{
@@ -24,5 +24,5 @@
 
 @code {
 	[Parameter]
-	public IBlog ActiveBlog { get; set; }
+	public IBlog? ActiveBlog { get; set; }
 }
