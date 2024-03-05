@@ -1,12 +1,12 @@
 ﻿@page "/blogpage/{Key}"
 @inject IBlogCollection blogs
 
-<BlogPost ActiveBlog=blogs.GetBlog(Key) />
+<BlogPost ActiveBlog=@blogs.GetBlog(Key) />
 
 @if (LatestOtherPost.HasValue)
 {
 	<p style="font-style:italic">You may also like:</p>
-	<BlogLinkTile BlogKey=@LatestOtherPost.Value.Key Blog=LatestOtherPost.Value.Value />
+	<BlogLinkTile BlogKey=@LatestOtherPost.Value.Key Blog=@LatestOtherPost.Value.Value />
 }
 
 @code {
