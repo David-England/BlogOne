@@ -5,6 +5,8 @@ namespace FlatFileStore
 {
     public class Blog : IBlog
     {
+        private readonly CultureInfo _britishCulture = new CultureInfo("en-GB");
+
         public string Title { get; }
         public string Topic { get; }
         public DateTime CreatedDate { get; }
@@ -17,7 +19,7 @@ namespace FlatFileStore
             var lines = File.ReadAllLines(fullName);
 
             Title = lines[0].Substring(10).Trim();
-            CreatedDate = DateTime.Parse(lines[0].Substring(0, 10));
+            CreatedDate = DateTime.Parse(lines[0].Substring(0, 10), _britishCulture);
             Topic = lines[1].Trim();
             Author = new Author();
             Location = new Location();
