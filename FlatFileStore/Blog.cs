@@ -31,9 +31,15 @@ namespace FlatFileStore
 
         private static IBlogElement CreateBlogElement(string line)
         {
-            if (line.Substring(0, Math.Min(5, line.Length)) == "<<PIC") return PictureLink.CreateFromLine(line);
-            else if (line.Substring(0, Math.Min(5, line.Length)) == "<<TAB") return TableRegular.CreateFromLine(line);
-            return Paragraph.Create(line);
+            switch (line.Substring(0, Math.Min(5, line.Length)))
+            {
+                case "<<PIC":
+                    return PictureLink.CreateFromLine(line);
+                case "<<TAB":
+                    return TableRegular.CreateFromLine(line);
+                default:
+                    return Paragraph.Create(line);
+            }
         }
     }
 }
