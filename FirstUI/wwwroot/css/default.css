@@ -19,6 +19,7 @@
 
 body {
     font-family: "Times New Roman";
+    padding: 8px;
 }
 
 a {
@@ -28,6 +29,13 @@ a {
 
 h1 {
     font-family: "Lucida Console";
+    font-size: 2em;
+    font-weight: bold;
+    margin: .67em 0 .67em 0;
+}
+
+p {
+    margin: 16px 0px 16px 0px;
 }
 
 .nav-bar {
