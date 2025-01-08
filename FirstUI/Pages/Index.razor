@@ -1,11 +1,9 @@
 ﻿@page "/"
 @inject IBlogCollection blogs
 
-<PageTitle>David's Electric Blog</PageTitle>
-
 <h1>Willkommen</h1>
 
-Welcome to my blog.
+Yet another blog.... Welcome.
 
 @foreach (var kv in blogs.GetAllBlogs().OrderByDescending(kv => kv.Value.CreatedDate).ToDictionary())
 {
