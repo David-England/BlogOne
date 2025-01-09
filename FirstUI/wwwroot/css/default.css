@@ -4,7 +4,7 @@
 
 .header {
     display: block;
-    font-family: "Lucida Console";
+    font-family: "Fira Code", "Courier New";
     font-size: large;
     background-color: cyan;
     position: sticky;
@@ -28,7 +28,7 @@ a {
 }
 
 h1 {
-    font-family: "Lucida Console";
+    font-family: "Fira Code", "Courier New";
     font-size: 2em;
     font-weight: bold;
     margin: .67em 0 .67em 0;
@@ -48,7 +48,7 @@ p {
     display: inline-block;
     width: fit-content;
     background-color: lightgray;
-    font-family: "Lucida Console";
+    font-family: "Fira Code", "Courier New";
     font-size: large;
     margin-right: 5px;
     opacity: .8;
@@ -75,7 +75,7 @@ p {
 }
 
 .blog-link-header {
-    font-family: 'Lucida Console';
+    font-family: "Fira Code", "Courier New";
     font-size: large;
 }
 
